@@ -47,6 +47,7 @@ export default function unmarshalProperties(
 			call(
 				ctx,
 				`(o, fn) => {
+				if ('__dangerousSync' in o) return
         const descs = Object.getOwnPropertyDescriptors(o);
         Object.entries(descs).forEach(([k, v]) => fn(k, v));
         Object.getOwnPropertySymbols(descs).forEach(k => fn(k, descs[k]));
